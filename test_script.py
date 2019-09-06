@@ -56,7 +56,9 @@ class achatTicketTest(unittest.TestCase):
         self.driver.find_element(By.XPATH, "//select[@name='cardType']/option[text()='Visa']").click()
         self.driver.find_element(By.ID, 'creditCardNumber').send_keys("0000")
         self.driver.find_element(By.ID, 'nameOnCard').send_keys("John Doe")
+        self.driver.find_element(By.ID, 'creditCardMonth').clear()
         self.driver.find_element(By.ID, 'creditCardMonth').send_keys("12")
+        self.driver.find_element(By.ID, 'creditCardYear').clear()
         self.driver.find_element(By.ID, 'creditCardYear').send_keys("2025")
 
         sleep(5)
