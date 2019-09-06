@@ -57,4 +57,10 @@ driver.find_element(By.CLASS_NAME, 'btn-primary').click()
 
 sleep(15)
 
+def savegarde_capture():
+    nom = "Blazedemo_capture"
+    driver.get_screenshot_as_file(nom + ".png")
+
+savegarde_capture()
+
 driver.quit()

@@ -44,20 +44,50 @@ class achatTicketTest(unittest.TestCase):
         # Prends le premier vol dans la liste
         self.driver.find_element(By.CLASS_NAME, "btn-small").click()
 
-        sleep(3)
+        sleep(2)
 
+    def achat_billet(self):
+        # Formulaire à remplire
+        self.driver.find_element(By.ID, 'inputName').send_keys("John Doe")
+        self.driver.find_element(By.ID, 'address').send_keys("Rue de Lutèce")
+        self.driver.find_element(By.ID, 'city').send_keys("Paris")
+        self.driver.find_element(By.ID, 'state').send_keys("Île-de-France")
+        self.driver.find_element(By.ID, 'zipCode').send_keys("75001")
+        self.driver.find_element(By.XPATH, "//select[@name='cardType']/option[text()='Visa']").click()
+        self.driver.find_element(By.ID, 'creditCardNumber').send_keys("0000")
+        self.driver.find_element(By.ID, 'nameOnCard').send_keys("John Doe")
+        self.driver.find_element(By.ID, 'creditCardMonth').send_keys("12")
+        self.driver.find_element(By.ID, 'creditCardYear').send_keys("2025")
+
+        sleep(5)
+
+        # Achat du billet
+        self.driver.find_element(By.CLASS_NAME, 'btn-primary').click()
+
+    def savegarde_capture(self):
+       nom = "Blazedemo_capture"
+       self.driver.get_screenshot_as_file(nom + ".png")
+
+    def capture_decran(self):
+       sleep(3)
+       self.savegarde_capture()
 
     def test_method(self):
       
-       # Test step #1
+       # Test ouverture navigateur #1
        self.ouverture_navigateur()
 
-       # Test step #2
+       # Test recherche billet #2
        self.recherche_billet()
 
-       # Test step #3
+       # Test choix du vol #3
        self.choix_vol()
 
+       # Test achat billet #4
+       self.achat_billet()
+
+       # Capture résultat page finale
+       self.capture_decran()
 
 if __name__ == "__main__":
     unittest.main()
